@@ -44,11 +44,11 @@ open class PersistentSet<T : NSManagedObject,TKey>: ObservableObject {
         assign(newValue,key: key)
         return newValue
     }
-   func add(_ key: TKey) {
+   public func add(_ key: TKey) {
        _ = make(key: key)
        saveData()
    }
-   func remove(_ entity: T) {
+   public func remove(_ entity: T) {
        container.viewContext.delete(entity)
        saveData()
    }
@@ -64,16 +64,16 @@ open class PersistentSet<T : NSManagedObject,TKey>: ObservableObject {
     {
         return undefined("has not overriden")
     }
-   func get(_ key: TKey) -> T?
+   public func get(_ key: TKey) -> T?
    {
     return values.first { has($0,key: key) }
   
    }
-   func contains(_ key: TKey) -> Bool
+   public func contains(_ key: TKey) -> Bool
    {
       return get(key) != nil
    }
-   func toggle(_ key: TKey)
+   public func toggle(_ key: TKey)
    {
        if let entity = get(key)
        {
